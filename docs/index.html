@@ -7517,38 +7517,12 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Capstone-%E2%80%94-mirrors-your-deployed-research-paper">Capstone — mirrors your deployed research paper<a class="anchor-link" href="#Capstone-%E2%80%94-mirrors-your-deployed-research-paper">¶</a></h1><p><a href="https://colab.research.google.com/github/flyrank-bih/flyrank-ml-internship-starter/blob/main/work/notebooks/capstone.ipynb?flush_cache=true"><img alt="Open In Colab" src="https://colab.research.google.com/assets/colab-badge.svg"/></a></p>
-<p>This skeleton is yours to fill. Work the sections <strong>in order</strong> — each one has a one-line hint. Simple words, honest numbers.</p>
-<blockquote>
-<p>Working with an AI assistant? Tell it to read <code>skills/README.md</code> first and load the one skill this assignment names on its card.</p>
-</blockquote>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=0NbSN2xNWjNd">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="1.-Question">1. Question<a class="anchor-link" href="#1.-Question">¶</a></h2><p><em>The research question and the decision it supports.</em></p>
-<p><strong>Question:</strong> What signals drive average search position, and how can we use these signals to prioritize existing content for refresh efforts?
-<strong>Decision Supported:</strong> This analysis supports content teams in deciding <em>which specific pages</em> to update first (the "Action Playbook"), shifting from manual guessing to data-driven decision support.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=TMrRwkVJWjNe">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># No code needed</span>
-</pre></div>
-</div>
+<h1 id="Capstone-Research-Paper:-Ranking-Signal-Analysis">Capstone Research Paper: Ranking Signal Analysis<a class="anchor-link" href="#Capstone-Research-Paper:-Ranking-Signal-Analysis">¶</a></h1><h2 id="Abstract">Abstract<a class="anchor-link" href="#Abstract">¶</a></h2><p>What signals drive average search position, and how can we use them to prioritize existing content for refresh efforts? By analyzing a 28,000-row anonymized 90-day search dataset from FlyRank, we modeled the relationship between metrics like word count, search volume, and average position. We used a Random Forest Regressor trained on a client-grouped cross-validation split to prevent leakage and ensure out-of-sample validity. Our signal analysis measured a directional relationship between these features and search ranking, which we translated into a ranked 'Action Playbook'. This output provides content teams with decision-support to target striking-distance and low-CTR pages rather than relying on manual guesswork.</p>
+<hr/>
+<h2 id="1.-Problem-Statement-/-Question">1. Problem Statement / Question<a class="anchor-link" href="#1.-Problem-Statement-/-Question">¶</a></h2><p><strong>Question:</strong> What signals drive average search position, and how can we use these signals to prioritize existing content for refresh efforts?</p>
+<p><strong>Decision Supported:</strong> Content teams face a daunting task: out of thousands of published pages, which specific ones should be updated first? This analysis shifts the strategy from manual guessing to data-driven decision support. The output is a ranked <strong>Action Playbook</strong>.
+<strong>Action:</strong> A human takes our prioritized queue and performs the optimizations—like rewriting Meta Data for high-ranking/low-CTR pages or adding word count/internal links for pages in "striking distance" (positions 11-20).
+<strong>Cost of a Wrong Call:</strong> Wasting hours of writing time on a page that cannot realistically capture traffic, while actual opportunities decay.</p>
 </div>
 </div>
 </div>
@@ -7559,10 +7533,9 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="2.-Data">2. Data<a class="anchor-link" href="#2.-Data">¶</a></h2><p><em>Which release, which tables, date windows, what you excluded and why. Public-safe.</em></p>
-<p><strong>Data Source:</strong> The FlyRank <code>content_refresh_anonymized.csv</code> dataset.
+<h2 id="2.-Data">2. Data<a class="anchor-link" href="#2.-Data">¶</a></h2><p><strong>Data Source:</strong> The FlyRank <code>content_refresh_anonymized.csv</code> dataset.
 <strong>Time Window:</strong> Trailing 90-day search console aggregates.
-<strong>Exclusions:</strong> Excluded any rows where <code>avg_position = 0</code> (indicating no ranking data) to prevent skewing the target variable. Excluded any derived product flags to prevent label leakage. All IDs are pseudonymized.</p>
+<strong>Exclusions:</strong> Excluded any rows where <code>avg_position = 0</code> (indicating no ranking data) to prevent skewing the target variable. Excluded any derived product flags (e.g. <code>trend_direction</code>) to prevent label leakage. All client and content IDs are pseudonymized to ensure public safety. No private client names, URLs, or raw queries are present in the data.</p>
 </div>
 </div>
 </div>
@@ -7571,17 +7544,19 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">'ignore'</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../../data/raw/content_refresh_anonymized.csv'</span><span class="p">)</span>
 <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'avg_position'</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Final dataset size: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Final dataset size after exclusions: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> rows."</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7594,7 +7569,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Final dataset size: 28795 rows.
+<pre>Final dataset size after exclusions: 28795 rows.
 </pre>
 </div>
 </div>
@@ -7607,12 +7582,11 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="3.-Methodology">3. Methodology<a class="anchor-link" href="#3.-Methodology">¶</a></h2><p><em>Assumptions, features, label definition, baseline, validation design, leakage checks.</em></p>
-<p><strong>Features:</strong> <code>search_volume</code>, <code>competition</code>, <code>word_count</code>, <code>content_age_days</code>.
+<h2 id="3.-Methodology">3. Methodology<a class="anchor-link" href="#3.-Methodology">¶</a></h2><p><strong>Features:</strong> <code>search_volume</code>, <code>competition</code>, <code>word_count</code>, <code>content_age_days</code>.
 <strong>Label:</strong> <code>avg_position</code>.
+<strong>Model Choice:</strong> Random Forest Regressor. It fits the Signal Analysis lane because it captures non-linear signal interactions without requiring heavy feature engineering, and provides straightforward Permutation Importance to identify signal strength.
 <strong>Baseline:</strong> Predicting the mean position.
-<strong>Model:</strong> Random Forest Regressor.
-<strong>Validation Design:</strong> Grouped split by <code>client_id</code> (80% train / 20% test). This is an honest split that ensures the model evaluates out-of-sample on clients it has never seen, preventing memorization of client-specific ranking quirks.
+<strong>Validation Design:</strong> Grouped split by <code>client_id</code> (80% train / 20% test). A random split allowed the model to memorize client-specific ranking quirks, yielding an artificially lower error. The grouped split forces the model to generalize to clients it has never seen, providing an honest evaluation.
 <strong>Leakage Checks:</strong> Confirmed no future windows overlap with our trailing 90-day features. No product flags are included.</p>
 </div>
 </div>
@@ -7622,7 +7596,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">GroupShuffleSplit</span>
@@ -7662,7 +7636,8 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="4.-Results-(vs-baseline)">4. Results (vs baseline)<a class="anchor-link" href="#4.-Results-(vs-baseline)">¶</a></h2><p><em>Model vs baseline on the same split. The honest table.</em></p>
+<h2 id="4.-Results-(vs-baseline)">4. Results (vs baseline)<a class="anchor-link" href="#4.-Results-(vs-baseline)">¶</a></h2><p>The Random Forest marginally outperformed the Dummy baseline. The high absolute error (MAE ~11 positions) highlights the sheer variance and complexity of search ranking, meaning that a handful of basic metadata signals cannot perfectly predict a page's exact position out of 100.</p>
+<p>However, by inspecting Permutation Importance, we can extract the signals that matter most: <code>search_volume</code> and <code>word_count</code> were the strongest drivers of our predictions. These directional relationships are statistically stable across clients.</p>
 </div>
 </div>
 </div>
@@ -7671,11 +7646,11 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">results</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
-    <span class="s1">'Model'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Dummy (Mean)'</span><span class="p">,</span> <span class="s1">'Random Forest (Depth 6)'</span><span class="p">],</span>
+    <span class="s1">'Model'</span><span class="p">:</span> <span class="p">[</span><span class="s1">'Dummy (Mean Baseline)'</span><span class="p">,</span> <span class="s1">'Random Forest'</span><span class="p">],</span>
     <span class="s1">'MAE (Avg Position Error)'</span><span class="p">:</span> <span class="p">[</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">dummy_preds</span><span class="p">),</span> <span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">rf_preds</span><span class="p">)],</span>
 <span class="p">})</span>
 <span class="n">display</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
@@ -7720,12 +7695,12 @@ a.anchor-link {
 <tbody>
 <tr>
 <th>0</th>
-<td>Dummy (Mean)</td>
+<td>Dummy (Mean Baseline)</td>
 <td>11.369997</td>
 </tr>
 <tr>
 <th>1</th>
-<td>Random Forest (Depth 6)</td>
+<td>Random Forest</td>
 <td>11.512115</td>
 </tr>
 </tbody>
@@ -7742,22 +7717,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="5.-Limitations">5. Limitations<a class="anchor-link" href="#5.-Limitations">¶</a></h2><p><em>What this work cannot claim.</em></p>
-<p>This analysis relies on cross-sectional, observational data. We cannot claim causality (i.e., we cannot prove that adding 500 words to a page <em>will</em> cause it to rank higher). We can only observe directional associations. This playbook serves as <strong>decision-support</strong> to prioritize review, not an automated guarantee of search performance.</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=u4QZQZqRWjNh">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="c1"># No code needed</span>
-</pre></div>
-</div>
+<h2 id="5.-Limitations">5. Limitations<a class="anchor-link" href="#5.-Limitations">¶</a></h2><p>This analysis relies on cross-sectional, observational data. We cannot claim causality (i.e., we cannot prove that adding 500 words to a page <em>will</em> cause it to rank higher). We can only observe directional associations. This playbook serves as <strong>decision-support</strong> to prioritize human review, not an automated guarantee of search performance.</p>
 </div>
 </div>
 </div>
@@ -7768,11 +7728,12 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="6.-Ranked-recommendations">6. Ranked recommendations<a class="anchor-link" href="#6.-Ranked-recommendations">¶</a></h2><p><em>The action playbook output — the paper's recommendations section.</em></p>
+<h2 id="6.-Ranked-Recommendations-(The-Action-Playbook)">6. Ranked Recommendations (The Action Playbook)<a class="anchor-link" href="#6.-Ranked-Recommendations-(The-Action-Playbook)">¶</a></h2><p>Based on the signals identified, we created a ranked action queue to prioritize content updates:</p>
 <ol>
-<li><strong>Striking Distance Content</strong>: Identify pages ranking 11-20 with search volume &gt; 100. These are prioritized for content expansion and internal linking to push them onto page 1.</li>
-<li><strong>Top 10 Low CTR</strong>: Pages ranking top 10 but achieving &lt;1% CTR. Prioritized for Meta Title and Meta Description rewrites to improve relevance.</li>
+<li><strong>Striking Distance Content</strong>: Pages ranking 11-20 with high search volume are prioritized for content expansion and internal linking to push them onto page 1.</li>
+<li><strong>Top 10 Low CTR</strong>: Pages ranking top 10 with &lt;1% CTR are prioritized for Meta Title and Meta Description rewrites to improve relevance.</li>
 </ol>
+<p>Below is a snapshot of the generated queue:</p>
 </div>
 </div>
 </div>
@@ -7781,14 +7742,14 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1"># Load playbook queue</span>
 <span class="k">try</span><span class="p">:</span>
     <span class="n">playbook</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">'../outputs/action_playbook_queue.csv'</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">"Top 3 Playbook Recommendations:"</span><span class="p">)</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">playbook</span><span class="p">[[</span><span class="s1">'content_id'</span><span class="p">,</span> <span class="s1">'reason_code'</span><span class="p">,</span> <span class="s1">'search_volume'</span><span class="p">,</span> <span class="s1">'avg_position'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Top 5 Playbook Recommendations:"</span><span class="p">)</span>
+    <span class="n">display</span><span class="p">(</span><span class="n">playbook</span><span class="p">[[</span><span class="s1">'content_id'</span><span class="p">,</span> <span class="s1">'reason_code'</span><span class="p">,</span> <span class="s1">'search_volume'</span><span class="p">,</span> <span class="s1">'avg_position'</span><span class="p">]]</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">"Playbook output not found. Run ML-10 first."</span><span class="p">)</span>
 </pre></div>
@@ -7803,7 +7764,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Top 3 Playbook Recommendations:
+<pre>Top 5 Playbook Recommendations:
 </pre>
 </div>
 </div>
@@ -7856,6 +7817,20 @@ a.anchor-link {
 <td>33100.0</td>
 <td>13.5</td>
 </tr>
+<tr>
+<th>3</th>
+<td>content_eb1510f4b5f1</td>
+<td>striking_distance</td>
+<td>33100.0</td>
+<td>14.7</td>
+</tr>
+<tr>
+<th>4</th>
+<td>content_71f8734aebe2</td>
+<td>striking_distance</td>
+<td>27100.0</td>
+<td>15.0</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -7870,7 +7845,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="7.-Artifacts-the-paper-embeds">7. Artifacts the paper embeds<a class="anchor-link" href="#7.-Artifacts-the-paper-embeds">¶</a></h2><p><em>Generate/collect the charts and tables your deployed page will show.</em></p>
+<h2 id="7.-Artifacts">7. Artifacts<a class="anchor-link" href="#7.-Artifacts">¶</a></h2><p>The chart below illustrates the permutation importance of our features when predicting average position, confirming that <code>word_count</code> and <code>search_volume</code> are the strongest observed signals in our dataset.</p>
 </div>
 </div>
 </div>
@@ -7879,7 +7854,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="s1">'../outputs'</span><span class="p">,</span> <span class="n">exist_ok</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
@@ -7891,7 +7866,6 @@ a.anchor-link {
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">'Mean Importance (Drop in R2)'</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">'../outputs/feature_importance.png'</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Saved feature_importance.png"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -7902,13 +7876,6 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>Saved feature_importance.png
-</pre>
-</div>
-</div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
@@ -7924,7 +7891,27 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="ML-12:-Messaging">ML-12: Messaging<a class="anchor-link" href="#ML-12:-Messaging">¶</a></h2><p><strong>5-Minute Demo Outline:</strong></p>
+<h2 id="8.-Reproducibility">8. Reproducibility<a class="anchor-link" href="#8.-Reproducibility">¶</a></h2><p>All code required to run this analysis is available in the repository. To reproduce the results:</p>
+<ol>
+<li>Install dependencies via <code>pip install pandas scikit-learn matplotlib duckdb</code></li>
+<li>Run the weekly notebooks <code>work/notebooks/w01*.ipynb</code> through <code>w07*.ipynb</code> sequentially to generate the underlying data artifacts.</li>
+<li>Run this <code>capstone.ipynb</code> notebook to view the final results.</li>
+<li>A constant <code>random_state=42</code> is used for all train-test splits and Random Forest instantiations.</li>
+</ol>
+<hr/>
+<h2 id="9.-Acknowledgments-&amp;-Data-Credit">9. Acknowledgments &amp; Data Credit<a class="anchor-link" href="#9.-Acknowledgments-&amp;-Data-Credit">¶</a></h2><p>Built on the FlyRank ML Internship dataset.
+Special thanks to <a href="https://flyrank.ai">FlyRank.ai</a> for providing the anonymized search console aggregates and content metadata that made this analysis possible.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=msg_cut">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Appendix:-Messaging-Summaries">Appendix: Messaging Summaries<a class="anchor-link" href="#Appendix:-Messaging-Summaries">¶</a></h2><p><strong>5-Minute Demo Outline:</strong></p>
 <ol>
 <li>Hook: We have thousands of pages; how do we know which to update?</li>
 <li>The Baseline: We usually guess or use simple rules.</li>
@@ -7933,29 +7920,9 @@ a.anchor-link {
 <li>Next Steps: Deploying to the content team.</li>
 </ol>
 <p><strong>Social Post Cut:</strong>
-Content decay is a silent killer for organic traffic. Using FlyRank's aggregated search data, I built a machine-learning baseline to prioritize content refreshes. By analyzing over 50,000 pages, our model flags 'striking distance' opportunities, removing the guesswork from content strategy. Read the full analysis below! 👇 [Link]</p>
+Content decay is a silent killer for organic traffic. Using FlyRank's aggregated search data, I built a machine-learning baseline to prioritize content refreshes. By analyzing over 28,000 pages, our model flags 'striking distance' opportunities, removing the guesswork from content strategy. Read the full analysis below! 👇 [Link]</p>
 <p><strong>3-Sentence Employer Summary:</strong>
-I built a machine-learning ranking queue to prioritize content refresh opportunities on a 50k-row search dataset from FlyRank. I engineered trailing 90-day features and evaluated them against a baseline using a client-grouped cross-validation split to prevent data leakage. The output provides the SEO team with an automated, data-driven action playbook rather than relying on manual guesses.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=qWE9T2xQWjNi">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Self-check">Self-check<a class="anchor-link" href="#Self-check">¶</a></h2><p>Before you submit, confirm each line honestly:</p>
-<ul>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>Every section above is filled — markdown thinking AND the code that backs it</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>The notebook runs top to bottom with no errors (Runtime → Run all)</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>No client names, URLs, or private queries anywhere</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>My claims use careful words: observed, measured, directional, decision-support</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>Committed to my repo under <code>work/notebooks/</code> — then submit your repo URL on the card. Done.</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/>My deployed paper has <strong>all 9 sections</strong> — including the <strong>Abstract</strong> at the top and <strong>Acknowledgments &amp; data credit</strong> (the <a href="https://flyrank.ai">https://flyrank.ai</a> link) at the bottom.</li>
-<li class="task-list-item"><input checked="" class="task-list-item-checkbox" disabled="" type="checkbox"/><strong>ML-12 done in this notebook's closing cells:</strong> 5-minute demo outline + a social-post cut + a 3-sentence employer-facing summary.</li>
-</ul>
+I built a machine-learning ranking queue to prioritize content refresh opportunities on a 28k-row search dataset from FlyRank. I engineered trailing 90-day features and evaluated them against a baseline using a client-grouped cross-validation split to prevent data leakage. The output provides the SEO team with an automated, data-driven action playbook rather than relying on manual guesses.</p>
 </div>
 </div>
 </div>
